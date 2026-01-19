@@ -160,6 +160,11 @@ nrf9120-ns = ["_nrf9120", "_ns", "_nrf91"]
 nrf9151-ns = ["nrf9120-ns"]
 nrf9161-ns = ["nrf9120-ns"]
 
+## TODO: document these features
+nrf54l-oscillators-is-secure = ["nrf54l-regulators-is-secure"] # REGULATORS and OSCILLATORS share the same base address, so if one is secure, both are secure 
+nrf54l-regulators-is-secure = ["nrf54l-oscillators-is-secure"]
+nrf54l-gpiote-is-secure = []
+
 # Features starting with `_` are for internal use only. They're not intended
 # to be enabled by other crates, and are not covered by semver guarantees.
 

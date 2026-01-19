@@ -746,7 +746,7 @@ pub fn init(config: config::Config) -> Peripherals {
     let mut needs_reset = false;
 
     // set clock speed
-    #[cfg(feature = "_nrf54l")]
+    #[cfg(all(feature = "_nrf54l", not(feature = "nrf54l-oscillators-is-secure")))]
     {
         #[cfg(feature = "_s")]
         let regs = pac::OSCILLATORS_S;
@@ -1219,7 +1219,7 @@ pub fn init(config: config::Config) -> Peripherals {
             reg.vregradio().dcdcen().write(|w| w.set_dcdcen(true));
         }
     }
-    #[cfg(feature = "_nrf54l")]
+    #[cfg(all(feature = "_nrf54l", not(feature = "nrf54l-regulators-is-secure")))]
     {
         // Turn on DCDC
         // From Product specification:
@@ -1230,7 +1230,7 @@ pub fn init(config: config::Config) -> Peripherals {
     }
 
     // Init GPIOTE
-    #[cfg(feature = "gpiote")]
+    #[cfg(all(feature = "gpiote", not(feature = "nrf54l-gpiote-is-secure")))]
     gpiote::init(config.gpiote_interrupt_priority);
 
     // init RTC time driver
