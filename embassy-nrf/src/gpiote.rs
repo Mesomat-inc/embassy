@@ -2,10 +2,10 @@
 #![macro_use]
 
 use core::convert::Infallible;
-use core::future::{Future, poll_fn};
+use core::future::{poll_fn, Future};
 use core::task::{Context, Poll};
 
-use embassy_hal_internal::{Peri, PeripheralType, impl_peripheral};
+use embassy_hal_internal::{impl_peripheral, Peri, PeripheralType};
 use embassy_sync::waitqueue::AtomicWaker;
 
 use crate::gpio::{
