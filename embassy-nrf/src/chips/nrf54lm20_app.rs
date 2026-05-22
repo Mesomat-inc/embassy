@@ -90,6 +90,7 @@ pub mod pac {
         REGULATORS_NS as REGULATORS,
         TPIU_NS as TPIU,
         ETM_NS as ETM,
+        P3_NS as P3,
     };
 
     #[cfg(feature = "_s")]
@@ -196,6 +197,7 @@ pub mod pac {
         CRACENCORE_S as CRACENCORE,
         CPUC_S as CPUC,
         ICACHE_S as ICACHE,
+        P3_S as P3,
     };
 }
 

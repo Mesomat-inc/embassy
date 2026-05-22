@@ -30,6 +30,7 @@
     feature = "nrf54l05-app-s",
     feature = "nrf54l05-app-ns",
     feature = "nrf54lm20-app-s",
+    feature = "nrf54lm20-app-ns",
     feature = "nrf9160-s",
     feature = "nrf9160-ns",
     feature = "nrf9120-s",
@@ -59,6 +60,7 @@ compile_error!(
     nrf54l05-app-s,
     nrf54l05-app-ns,
     nrf54lm20-app-s,
+    nrf54lm20-app-ns,
     nrf9160-s,
     nrf9160-ns,
     nrf9120-s,
@@ -319,7 +321,7 @@ macro_rules! bind_interrupts {
 pub use chip::pac;
 #[cfg(not(feature = "unstable-pac"))]
 pub(crate) use chip::pac;
-pub use chip::{EASY_DMA_SIZE, Peripherals, peripherals};
+pub use chip::{peripherals, Peripherals, EASY_DMA_SIZE};
 pub use embassy_hal_internal::{Peri, PeripheralType};
 
 pub use crate::chip::interrupt;

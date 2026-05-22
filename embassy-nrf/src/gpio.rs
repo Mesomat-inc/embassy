@@ -5,10 +5,10 @@ use core::convert::Infallible;
 use core::hint::unreachable_unchecked;
 
 use cfg_if::cfg_if;
-use embassy_hal_internal::{Peri, PeripheralType, impl_peripheral};
+use embassy_hal_internal::{impl_peripheral, Peri, PeripheralType};
 
 use crate::pac;
-use crate::pac::common::{RW, Reg};
+use crate::pac::common::{Reg, RW};
 use crate::pac::gpio;
 use crate::pac::gpio::vals;
 #[cfg(not(feature = "_nrf51"))]
@@ -27,6 +27,10 @@ pub enum Port {
     /// Port 2, only available on some MCUs.
     #[cfg(feature = "_gpio-p2")]
     Port2,
+
+    /// Port 3, only available on some MCUs.
+    #[cfg(feature = "_gpio-p3")]
+    Port3,
 }
 
 /// Pull setting for an input.
@@ -505,6 +509,8 @@ pub(crate) trait SealedPin {
             1 => pac::P1,
             #[cfg(feature = "_gpio-p2")]
             2 => pac::P2,
+            #[cfg(feature = "_gpio-p3")]
+            3 => pac::P3,
             _ => unsafe { unreachable_unchecked() },
         }
     }
@@ -545,6 +551,8 @@ pub trait Pin: PeripheralType + Into<AnyPin> + SealedPin + Sized + 'static {
             1 => Port::Port1,
             #[cfg(feature = "_gpio-p2")]
             2 => Port::Port2,
+            #[cfg(feature = "_gpio-p3")]
+            3 => Port::Port3,
             _ => unsafe { unreachable_unchecked() },
         }
     }

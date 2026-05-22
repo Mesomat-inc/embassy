@@ -2,10 +2,10 @@
 #![macro_use]
 
 use core::convert::Infallible;
-use core::future::{Future, poll_fn};
+use core::future::{poll_fn, Future};
 use core::task::{Context, Poll};
 
-use embassy_hal_internal::{Peri, PeripheralType, impl_peripheral};
+use embassy_hal_internal::{impl_peripheral, Peri, PeripheralType};
 use embassy_sync::waitqueue::AtomicWaker;
 
 use crate::gpio::{AnyPin, Flex, Input, Level, Output, OutputDrive, Pin as GpioPin, Pull, SealedPin as _};
@@ -340,6 +340,8 @@ impl<'d> InputChannel<'d> {
                 crate::gpio::Port::Port0 => 0,
                 crate::gpio::Port::Port1 => 1,
                 crate::gpio::Port::Port2 => 2,
+                #[cfg(feature = "_gpio-p3")]
+                crate::gpio::Port::Port3 => 3,
             });
             w.set_psel(pin.pin.pin.pin());
         });
@@ -517,6 +519,8 @@ impl<'d> OutputChannel<'d> {
                 crate::gpio::Port::Port0 => 0,
                 crate::gpio::Port::Port1 => 1,
                 crate::gpio::Port::Port2 => 2,
+                #[cfg(feature = "_gpio-p3")]
+                crate::gpio::Port::Port3 => 3,
             });
             w.set_psel(pin.pin.pin.pin());
         });
