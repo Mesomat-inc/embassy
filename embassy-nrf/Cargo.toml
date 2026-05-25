@@ -173,6 +173,11 @@ nrf9161-ns = ["nrf9120-ns"]
 # Features starting with `_` are for internal use only. They're not intended
 # to be enabled by other crates, and are not covered by semver guarantees.
 
+nrf54l-oscillators-is-secure = ["nrf54l-regulators-is-secure"] # REGULATORS and OSCILLATORS share the same base address, so if one is secure, both are secure 
+
+nrf54l-regulators-is-secure = ["nrf54l-oscillators-is-secure"]
+nrf54l-gpiote-is-secure = []
+
 _nrf5340-app = ["_nrf5340", "_multi_wdt", "nrf-pac/nrf5340-app"]
 _nrf5340-net = ["_nrf5340", "nrf-pac/nrf5340-net"]
 _nrf5340 = ["_gpio-p1", "_dppi"]
