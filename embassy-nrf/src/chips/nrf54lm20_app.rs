@@ -64,7 +64,7 @@ pub mod pac {
         TEMP_NS as TEMP,
         P1_NS as P1,
         GPIOTE20_NS as GPIOTE20,
-        I2S20_NS as I2S20,
+        //I2S20_NS as I2S20,
         QDEC20_NS as QDEC20,
         QDEC21_NS as QDEC21,
         GRTC_NS as GRTC,
